@@ -26,4 +26,13 @@ public class AddressService {
                 })
                 .orElseThrow();
     }
+
+    public AddressResponse updateAddress(int addressId, AddressRequest addressRequest) {
+        return addressRepository.findById((long) addressId)
+                .map(a ->
+                    AddressMapper.mapToAddressResponse(addressRepository
+                            .save(AddressMapper.mapToAddress(addressRequest, a)))
+                ).orElseThrow();
+    }
+
 }
