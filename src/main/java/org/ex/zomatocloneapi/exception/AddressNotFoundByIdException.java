@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
-public class RestaurantNotFoundById extends RuntimeException {
-
+public class AddressNotFoundByIdException extends RuntimeException {
     private String message;
-
 }
