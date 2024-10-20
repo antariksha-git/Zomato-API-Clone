@@ -3,6 +3,7 @@ package org.ex.zomatocloneapi.service;
 import lombok.AllArgsConstructor;
 import org.ex.zomatocloneapi.entity.Address;
 import org.ex.zomatocloneapi.entity.Restaurant;
+import org.ex.zomatocloneapi.exception.AddressNotFoundByIdException;
 import org.ex.zomatocloneapi.mapper.AddressMapper;
 import org.ex.zomatocloneapi.repository.AddressRepository;
 import org.ex.zomatocloneapi.repository.RestaurantRepository;
@@ -32,7 +33,7 @@ public class AddressService {
                 .map(a ->
                     AddressMapper.mapToAddressResponse(addressRepository
                             .save(AddressMapper.mapToAddress(addressRequest, a)))
-                ).orElseThrow();
+                ).orElseThrow(() -> new AddressNotFoundByIdException("Address not found by the given id"));
     }
 
 }
