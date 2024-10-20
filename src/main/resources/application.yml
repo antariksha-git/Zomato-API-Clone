@@ -19,3 +19,7 @@ spring:
       hibernate:
         format_sql: true
         use_sql_comments: true
+
+#base URL configuration
+zomato:
+  base_url: api/v1
