@@ -9,10 +9,7 @@ import org.ex.zomatocloneapi.util.AppResponseBuilder;
 import org.ex.zomatocloneapi.util.ResponseStructure;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("${zomato.base_url}")
@@ -25,6 +22,12 @@ public class RestaurantController {
     public ResponseEntity<ResponseStructure<RestaurantResponse>> addRestaurant(@RequestBody RestaurantRequest restaurantRequest) {
         RestaurantResponse restaurantResponse = restaurantService.addRestaurant(restaurantRequest);
         return AppResponseBuilder.create(HttpStatus.CREATED, "Restaurant added successfully", restaurantResponse);
+    }
+
+    @GetMapping("/restaurant/{restaurant_id}")
+    public ResponseEntity<ResponseStructure<RestaurantResponse>> getRestaurant(@PathVariable("restaurant_id") String restaurantId) {
+        RestaurantResponse restaurantResponse = restaurantService.findRestaurantById(restaurantId);
+        return AppResponseBuilder.create(HttpStatus.FOUND, "Restaurant found", restaurantResponse);
     }
 
 }
