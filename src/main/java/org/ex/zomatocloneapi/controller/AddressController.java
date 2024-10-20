@@ -23,4 +23,10 @@ public class AddressController {
                 .create(HttpStatus.CREATED, "Address created successfully", addressService.addAddressToRestaurant(addressRequest, restaurantId));
     }
 
+    @PutMapping("/address/{address_id}")
+    public ResponseEntity<ResponseStructure<AddressResponse>> updateAddress(@PathVariable("address_id")int addressId, @RequestBody AddressRequest addressRequest) {
+        return AppResponseBuilder
+                .create(HttpStatus.OK, "Address updated successfully", addressService.updateAddress(addressId, addressRequest));
+    }
+
 }
