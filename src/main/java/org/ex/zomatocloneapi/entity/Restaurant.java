@@ -35,7 +35,7 @@ public class Restaurant {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<DietTypes> dietType;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Address address;
 
 }
