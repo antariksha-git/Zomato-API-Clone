@@ -19,7 +19,7 @@ public class AddressMapper {
         return address;
     }
 
-    public static AddressResponse mapToAddressRequest(Address address) {
+    public static AddressResponse mapToAddressResponse(Address address) {
         AddressResponse addressResponse = new AddressResponse();
         addressResponse.setAddressLine2(address.getAddressLine2());
         addressResponse.setAddressLine1(address.getAddressLine1());
