@@ -10,9 +10,9 @@ public class AppResponseBuilder {
                .body(ResponseStructure.create(status, message, data));
    }
 
-    public static ResponseEntity<ErrorStructure<String>> error(HttpStatus status, String message, String rootCause) {
+    public static <T>ResponseEntity<ErrorStructure<T>> error(HttpStatus status, String message, T rootCause) {
         return ResponseEntity
                 .status(status)
-                .body(ErrorStructure.getErrorStructure(status, message, rootCause));
+                .body(ErrorStructure.getErrorStructure(status, rootCause, message));
     }
 }
