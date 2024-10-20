@@ -27,4 +27,15 @@ public class RestaurantService {
                         .findById(restaurantId)
                         .orElseThrow(() -> new RestaurantNotFoundById("Restaurant not found")));
     }
+
+    public RestaurantResponse updateRestaurant(String restaurantId, RestaurantRequest restaurantRequest) {
+        return restaurantRepository.findById(restaurantId)
+                .map(r -> {
+                return RestaurantMapper
+                        .mapToRestaurantResponse(restaurantRepository
+                                .save(RestaurantMapper.mapToRestaurant(restaurantRequest, r)));
+                })
+                .orElseThrow(() -> new RestaurantNotFoundById("Restaurant not found"));
+
+    }
 }
