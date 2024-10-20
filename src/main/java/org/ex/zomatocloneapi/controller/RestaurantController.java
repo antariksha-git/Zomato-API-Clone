@@ -25,7 +25,7 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurant/{restaurant_id}")
-    public ResponseEntity<ResponseStructure<RestaurantResponse>> getRestaurant(@PathVariable("restaurant_id") String restaurantId) {
+    public ResponseEntity<ResponseStructure<RestaurantResponse>> findRestaurantById(@PathVariable("restaurant_id") String restaurantId) {
         RestaurantResponse restaurantResponse = restaurantService.findRestaurantById(restaurantId);
         return AppResponseBuilder.create(HttpStatus.FOUND, "Restaurant found", restaurantResponse);
     }
