@@ -35,4 +35,7 @@ public class Restaurant {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<DietTypes> dietType;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    private Address address;
+
 }
