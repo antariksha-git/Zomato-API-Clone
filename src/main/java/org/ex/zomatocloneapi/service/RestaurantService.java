@@ -19,4 +19,11 @@ public class RestaurantService {
                 .mapToRestaurantResponse(restaurantRepository
                         .save(RestaurantMapper.mapToRestaurant(restaurantRequest, new Restaurant())));
     }
+
+    public RestaurantResponse findRestaurantById(String restaurantId) {
+        return RestaurantMapper
+                .mapToRestaurantResponse(restaurantRepository
+                        .findById(restaurantId)
+                        .orElseThrow());
+    }
 }
