@@ -21,6 +21,7 @@ public class AddressMapper {
 
     public static AddressResponse mapToAddressResponse(Address address) {
         AddressResponse addressResponse = new AddressResponse();
+        addressResponse.setAddressId(address.getAddressId());
         addressResponse.setAddressLine2(address.getAddressLine2());
         addressResponse.setAddressLine1(address.getAddressLine1());
         addressResponse.setCity(address.getCity());
