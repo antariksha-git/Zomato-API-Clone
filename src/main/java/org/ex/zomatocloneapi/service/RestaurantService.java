@@ -2,7 +2,8 @@ package org.ex.zomatocloneapi.service;
 
 import lombok.AllArgsConstructor;
 import org.ex.zomatocloneapi.entity.Restaurant;
-import org.ex.zomatocloneapi.exception.RestaurantNotFoundById;
+import org.ex.zomatocloneapi.exception.RestaurantNotFoundByIdException;
+import org.ex.zomatocloneapi.exception.RestaurantNotFoundByIdException;
 import org.ex.zomatocloneapi.mapper.RestaurantMapper;
 import org.ex.zomatocloneapi.repository.RestaurantRepository;
 import org.ex.zomatocloneapi.requestdto.RestaurantRequest;
@@ -25,7 +26,7 @@ public class RestaurantService {
         return RestaurantMapper
                 .mapToRestaurantResponse(restaurantRepository
                         .findById(restaurantId)
-                        .orElseThrow(() -> new RestaurantNotFoundById("Restaurant not found")));
+                        .orElseThrow(() -> new RestaurantNotFoundByIdException("Restaurant not found")));
     }
 
     public RestaurantResponse updateRestaurant(String restaurantId, RestaurantRequest restaurantRequest) {
@@ -35,7 +36,7 @@ public class RestaurantService {
                         .mapToRestaurantResponse(restaurantRepository
                                 .save(RestaurantMapper.mapToRestaurant(restaurantRequest, r)));
                 })
-                .orElseThrow(() -> new RestaurantNotFoundById("Restaurant not found"));
+                .orElseThrow(() -> new RestaurantNotFoundByIdException("Restaurant not found"));
 
     }
 }
