@@ -46,7 +46,7 @@ public class RestaurantService {
     public String uploadRestaurantLogo(String restaurantId, MultipartFile file) {
         String imageUrl = imageService.uploadRestaurantLogo(file);
         Restaurant restaurant = restaurantRepository.findById(restaurantId)
-                .orElseThrow(() -> new RuntimeException("Restaurant not found"));
+                .orElseThrow(() -> new RestaurantNotFoundByIdException("Restaurant not found"));
 
         Image image = new Image();
         image.setUrl(imageUrl);
