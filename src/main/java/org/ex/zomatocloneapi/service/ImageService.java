@@ -17,9 +17,7 @@ public class ImageService {
 
     public String uploadRestaurantLogo(MultipartFile file) {
         try {
-            // Upload the image to Cloudinary
             Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
-            // Return the URL of the uploaded image
             return (String) uploadResult.get("url");
         } catch (IOException e) {
             throw new RuntimeException("Failed to upload image: " + e.getMessage());
