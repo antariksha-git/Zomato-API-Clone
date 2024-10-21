@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.ex.zomatocloneapi.config.GenerateCustomId;
 import org.ex.zomatocloneapi.enums.DietTypes;
 
+import java.awt.*;
 import java.util.List;
 
 @Entity
@@ -38,4 +39,6 @@ public class Restaurant {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Address address;
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Image image;
 }
