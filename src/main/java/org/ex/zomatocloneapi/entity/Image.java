@@ -1,9 +1,6 @@
 package org.ex.zomatocloneapi.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +11,7 @@ import lombok.Setter;
 @Getter
 public class Image {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
     private int imageId;
 
