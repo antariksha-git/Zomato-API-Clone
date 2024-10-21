@@ -1,8 +1,11 @@
 package org.ex.zomatocloneapi.mapper;
 
+import org.ex.zomatocloneapi.entity.Address;
 import org.ex.zomatocloneapi.entity.Restaurant;
 import org.ex.zomatocloneapi.requestdto.RestaurantRequest;
 import org.ex.zomatocloneapi.responsedtao.RestaurantResponse;
+
+import java.util.Optional;
 
 public class RestaurantMapper {
 
@@ -24,7 +27,9 @@ public class RestaurantMapper {
         restaurantResponse.setEmail(restaurant.getEmail());
         restaurantResponse.setPhoneNumber(restaurant.getPhoneNumber());
         restaurantResponse.setDietType(restaurant.getDietType());
-        restaurantResponse.setAddressResponse(AddressMapper.mapToAddressResponse(restaurant.getAddress()));
+        Optional.ofNullable(restaurant.getAddress()).ifPresent(a -> {
+            restaurantResponse.setAddressResponse(AddressMapper.mapToAddressResponse(a));
+        });
 
         return restaurantResponse;
     }
