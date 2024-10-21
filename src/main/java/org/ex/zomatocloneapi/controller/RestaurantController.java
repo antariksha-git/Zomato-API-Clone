@@ -1,5 +1,6 @@
 package org.ex.zomatocloneapi.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.apache.coyote.Response;
 import org.ex.zomatocloneapi.requestdto.RestaurantRequest;
@@ -34,7 +35,7 @@ public class RestaurantController {
     }
 
     @PutMapping("/restaurant/{restaurant_id}")
-    public ResponseEntity<ResponseStructure<RestaurantResponse>> updateRestaurant(@PathVariable("restaurant_id") String restaurantId, @RequestBody RestaurantRequest restaurantRequest) {
+    public ResponseEntity<ResponseStructure<RestaurantResponse>> updateRestaurant(@PathVariable("restaurant_id") String restaurantId, @RequestBody @Valid RestaurantRequest restaurantRequest) {
         RestaurantResponse restaurantResponse = restaurantService.updateRestaurant(restaurantId, restaurantRequest);
         return AppResponseBuilder.create(HttpStatus.OK, "Restaurant updated successfully", restaurantResponse);
     }
