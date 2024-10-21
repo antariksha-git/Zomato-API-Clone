@@ -5,9 +5,9 @@ spring:
 
   # Configuring the DataSource for MySQL database
   datasource:
-    url: jdbc:mysql://localhost:3306/zomato_clone_db?createDatabaseIfNotExist=true  # Database URL with auto-creation
-    username: root
-    password: password
+    url: ${MYSQL_URL}  # Database URL with auto-creation
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL JDBC Driver
 
   # Hibernate JPA properties for managing the database and SQL queries
@@ -23,3 +23,8 @@ spring:
 #base URL configuration
 zomato:
   base_url: api/v1
+
+cloudinary:
+  cloud_name: ${CLOUDINARY_CLOUD_NAME}
+  api_key: ${CLOUDINARY_API_KEY}
+  api_secret: ${CLOUDINARY_API_SECRET}
