@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "cuisines")
 @Getter
@@ -16,4 +18,7 @@ public class Cuisine {
 
     @Column(name = "title")
     private String title;
+
+    @ManyToMany(mappedBy = "cuisines")
+    Set<Restaurant> restaurants;
 }
