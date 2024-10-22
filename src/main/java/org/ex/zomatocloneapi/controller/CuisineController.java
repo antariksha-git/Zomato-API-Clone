@@ -32,9 +32,14 @@ public class CuisineController {
         return AppResponseBuilder.create(HttpStatus.FOUND, "Found All Cuisines", cuisineService.getAllCuisines());
     }
 
-    @PostMapping("/{restaurant_id}/cuisine")
+    @PostMapping("/{restaurant_id}/cuisines")
     public ResponseEntity<ResponseStructure<List<CuisineResponse>>> saveCuisineToRestaurant(@RequestBody List<CuisineRequest> cuisineRequest, @PathVariable("restaurant_id") String restaurantId) {
-        return AppResponseBuilder.create(HttpStatus.CREATED, "Successfully added cuisines to restaurant", restaurantService.addCuisineToRestaurant(restaurantId, cuisineRequest));
+        return AppResponseBuilder.create(HttpStatus.CREATED, "Successfully added cuisines to restaurant", cuisineService.addCuisinesToRestaurant(restaurantId, cuisineRequest));
+    }
+
+    @PostMapping("/{restaurant_id}/cuisine")
+    public ResponseEntity<ResponseStructure<CuisineResponse>> saveCuisineToRestaurant(@RequestBody CuisineRequest cuisineRequest, @PathVariable("restaurant_id") String restaurantId) {
+        return AppResponseBuilder.create(HttpStatus.CREATED, "Successfully added cuisines to restaurant", cuisineService.addCuisineToRestaurant(restaurantId, cuisineRequest));
     }
 
 }
