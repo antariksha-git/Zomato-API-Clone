@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("${zomato.base_url}")
@@ -22,4 +24,10 @@ public class CuisineController {
     public ResponseEntity<ResponseStructure<CuisineResponse>> saveCuisine(@RequestBody CuisineRequest cuisineRequest) {
         return AppResponseBuilder.create(HttpStatus.CREATED, "Create cuisine", cuisineService.addCuisine(cuisineRequest));
     }
+
+    @GetMapping("/cuisine")
+    public ResponseEntity<ResponseStructure<List<CuisineResponse>>> getCuisine() {
+        return AppResponseBuilder.create(HttpStatus.FOUND, "Found All Cuisines", cuisineService.getAllCuisines());
+    }
+
 }
