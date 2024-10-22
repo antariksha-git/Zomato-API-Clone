@@ -8,6 +8,7 @@ import org.ex.zomatocloneapi.enums.DietTypes;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "restaurants")
@@ -41,4 +42,7 @@ public class Restaurant {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Image image;
+
+    @ManyToMany
+    Set<Cuisine> cuisines;
 }
