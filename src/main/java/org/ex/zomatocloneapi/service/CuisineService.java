@@ -28,5 +28,14 @@ public class CuisineService {
                 .map(CuisineMapper::mapToCuisineResponse) .toList();
     }
 
+    public Cuisine findOrCreateCuisineByName(String title) {
+        return cuisineRepository.findByTitle(title)
+                .orElseGet(() -> {
+                    Cuisine newCuisine = new Cuisine();
+                    newCuisine.setTitle(title);
+                    return cuisineRepository.save(newCuisine);
+                });
+    }
+
 
 }
