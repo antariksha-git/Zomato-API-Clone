@@ -65,20 +65,4 @@ public class RestaurantService {
 
         return imageUrl;
     }
-
-    public List<CuisineResponse> addCuisineToRestaurant(String restaurantId, List<CuisineRequest> cuisineRequest) {
-        Set<Cuisine> cuisines = cuisineRequest
-                .stream()
-                .map(c -> CuisineMapper.mapToCuisine(c, new Cuisine()))
-                .map(c -> cuisineService.findOrCreateCuisineByName(c.getTitle()))
-                .collect(Collectors.toSet());
-
-        return restaurantRepository.findById(restaurantId)
-                .map(r -> {
-                    r.setCuisines(cuisines);
-                    restaurantRepository.save(r);
-                    return r.getCuisines().stream().map(CuisineMapper::mapToCuisineResponse).toList();
-                })
-                .orElseThrow(() -> new RestaurantNotFoundByIdException("Restaurant not found by the given id"));
-    }
 }
