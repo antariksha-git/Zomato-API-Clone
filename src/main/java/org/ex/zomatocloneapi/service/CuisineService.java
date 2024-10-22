@@ -8,6 +8,8 @@ import org.ex.zomatocloneapi.requestdto.CuisineRequest;
 import org.ex.zomatocloneapi.responsedtao.CuisineResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class CuisineService {
@@ -19,5 +21,12 @@ public class CuisineService {
                 .mapToCuisineResponse(cuisineRepository.save(CuisineMapper
                         .mapToCuisine(cuisineRequest, new Cuisine())));
     }
+
+    public List<CuisineResponse> getAllCuisines() {
+        return cuisineRepository.findAll()
+                .stream()
+                .map(CuisineMapper::mapToCuisineResponse) .toList();
+    }
+
 
 }
