@@ -6,12 +6,12 @@ import org.ex.zomatocloneapi.responsedtao.CuisineResponse;
 
 public class CuisineMapper {
 
-    public Cuisine mapToCuisine(CuisineRequest cuisineRequest, Cuisine cuisine) {
+    public static Cuisine mapToCuisine(CuisineRequest cuisineRequest, Cuisine cuisine) {
         cuisine.setTitle(cuisineRequest.getTitle());
         return cuisine;
     }
 
-    public CuisineResponse mapToCuisineResponse(Cuisine cuisine) {
+    public static CuisineResponse mapToCuisineResponse(Cuisine cuisine) {
         CuisineResponse cuisineResponse = new CuisineResponse();
         cuisineResponse.setTitle(cuisine.getTitle());
         cuisineResponse.setCuisineId(cuisine.getCuisineId());
