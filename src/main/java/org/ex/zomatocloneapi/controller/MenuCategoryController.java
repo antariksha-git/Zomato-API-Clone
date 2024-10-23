@@ -23,4 +23,11 @@ public class MenuCategoryController {
                 .create(HttpStatus.CREATED, "Menu category created successfully", menuCategoryService
                         .saveMenuCategory(restaurantId, menuCategoryRequest));
     }
+
+    @PutMapping("menu/{category_id}")
+    public ResponseEntity<ResponseStructure<MenuCategoryResponse>> updateMenuCategory(@PathVariable("category_id") long categoryId, @RequestBody MenuCategoryRequest menuCategoryRequest) {
+        return AppResponseBuilder
+                .create(HttpStatus.OK, "Menu category updated successfully", menuCategoryService
+                        .updateMenuCategory(categoryId, menuCategoryRequest));
+    }
 }

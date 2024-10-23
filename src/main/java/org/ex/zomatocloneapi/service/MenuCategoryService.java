@@ -30,4 +30,12 @@ public class MenuCategoryService {
                 .orElseThrow(() -> new RestaurantNotFoundByIdException("Restaurant with id " + restaurantId + " not found"));
     }
 
+    public MenuCategoryResponse updateMenuCategory(long menuCategoryId, MenuCategoryRequest menuCategoryRequest) {
+        return menuCategoryRepository.findById(menuCategoryId)
+                .map(menuCategory -> MenuCategoryMapper
+                        .mapToMenuCategoryResponse(menuCategoryRepository
+                                .save(MenuCategoryMapper.mapToMenuCategory(menuCategoryRequest, menuCategory)))
+                ).orElseThrow();
+    }
+
 }
