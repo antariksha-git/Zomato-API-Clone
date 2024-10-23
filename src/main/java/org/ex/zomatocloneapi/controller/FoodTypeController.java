@@ -10,10 +10,9 @@ import org.ex.zomatocloneapi.util.ResponseStructure;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("${zomato.base_url}")
@@ -27,6 +26,13 @@ public class FoodTypeController {
         return AppResponseBuilder
                 .create(HttpStatus.CREATED, "Food created successfully", foodTypeService
                         .saveFoodType(foodTypeRequest));
+    }
+
+    @GetMapping("/food-type")
+    public ResponseEntity<ResponseStructure<List<FoodTypeResponse>>> getFoodTypes() {
+        return AppResponseBuilder
+                .create(HttpStatus.FOUND, "Retrieved all food types successfully", foodTypeService
+                        .getAllFoodTypes());
     }
 
 }
