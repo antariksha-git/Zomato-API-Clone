@@ -16,4 +16,7 @@ public class MenuCategory {
 
     @Column(name = "title")
     private String title;
+
+    @ManyToOne
+    private Restaurant restaurant;
 }

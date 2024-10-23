@@ -45,4 +45,7 @@ public class Restaurant {
 
     @ManyToMany
     Set<Cuisine> cuisines;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<MenuCategory> menuCategories;
 }
