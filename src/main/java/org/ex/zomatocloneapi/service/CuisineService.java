@@ -27,10 +27,11 @@ public class CuisineService {
                         .mapToCuisine(cuisineRequest, new Cuisine())));
     }
 
-    public List<CuisineResponse> getAllCuisines() {
+    public List<String> getAllCuisines() {
         return cuisineRepository.findAll()
                 .stream()
-                .map(CuisineMapper::mapToCuisineResponse) .toList();
+                .map(Cuisine::getTitle)
+                .toList();
     }
 
     private Cuisine findOrCreateCuisineByTitle(String title) {
@@ -61,7 +62,7 @@ public class CuisineService {
     public CuisineResponse addCuisineToRestaurant(String restaurantId, CuisineRequest cuisineRequest) {
         return restaurantRepository.findById(restaurantId)
                 .map(restaurant -> {
-                    Cuisine cuisine = this.findOrCreateCuisineByTitle(CuisineMapper.mapToCuisine(cuisineRequest, new Cuisine()).getTitle());
+                    Cuisine cuisine = this.findOrCreateCuisineByTitle(cuisineRequest.getTitle());
                     restaurant.getCuisines().add(cuisine);
                     restaurantRepository.save(restaurant);
                     return CuisineMapper.mapToCuisineResponse(cuisine);
