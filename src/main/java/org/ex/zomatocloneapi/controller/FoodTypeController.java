@@ -1,6 +1,9 @@
 package org.ex.zomatocloneapi.controller;
 
 import lombok.AllArgsConstructor;
+import org.ex.zomatocloneapi.entity.Cuisine;
+import org.ex.zomatocloneapi.entity.FoodType;
+import org.ex.zomatocloneapi.repository.FoodTypeRepository;
 import org.ex.zomatocloneapi.requestdto.FoodTypeRequest;
 import org.ex.zomatocloneapi.responsedtao.FoodTypeResponse;
 import org.ex.zomatocloneapi.service.FoodTypeService;
@@ -10,10 +13,9 @@ import org.ex.zomatocloneapi.util.ResponseStructure;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("${zomato.base_url}")
@@ -29,4 +31,10 @@ public class FoodTypeController {
                         .saveFoodType(foodTypeRequest));
     }
 
+    @GetMapping("/food-type")
+    public ResponseEntity<ResponseStructure<List<String>>> getFoodTypes() {
+        return AppResponseBuilder
+                .create(HttpStatus.FOUND, "Retrieved all food types successfully", foodTypeService
+                        .getAllFoodTypes());
+    }
 }
