@@ -10,6 +10,8 @@ import org.ex.zomatocloneapi.requestdto.FoodTypeRequest;
 import org.ex.zomatocloneapi.responsedtao.FoodTypeResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Getter
 @Setter
@@ -22,6 +24,13 @@ public class FoodTypeService {
         return FoodTypeMapper
                 .mapToFoodTypeResponse(foodTypeRepository
                         .save(FoodTypeMapper.mapToFoodType(foodTypeRequest, new FoodType())));
+    }
+
+    public List<FoodTypeResponse> getAllFoodTypes() {
+        return foodTypeRepository.findAll()
+                .stream()
+                .map(FoodTypeMapper::mapToFoodTypeResponse)
+                .toList();
     }
 
 }
