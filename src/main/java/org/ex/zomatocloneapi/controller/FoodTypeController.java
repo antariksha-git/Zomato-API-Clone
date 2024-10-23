@@ -1,6 +1,9 @@
 package org.ex.zomatocloneapi.controller;
 
 import lombok.AllArgsConstructor;
+import org.ex.zomatocloneapi.entity.Cuisine;
+import org.ex.zomatocloneapi.entity.FoodType;
+import org.ex.zomatocloneapi.repository.FoodTypeRepository;
 import org.ex.zomatocloneapi.requestdto.FoodTypeRequest;
 import org.ex.zomatocloneapi.responsedtao.FoodTypeResponse;
 import org.ex.zomatocloneapi.service.FoodTypeService;
@@ -29,10 +32,9 @@ public class FoodTypeController {
     }
 
     @GetMapping("/food-type")
-    public ResponseEntity<ResponseStructure<List<FoodTypeResponse>>> getFoodTypes() {
+    public ResponseEntity<ResponseStructure<List<String>>> getFoodTypes() {
         return AppResponseBuilder
                 .create(HttpStatus.FOUND, "Retrieved all food types successfully", foodTypeService
                         .getAllFoodTypes());
     }
-
 }
