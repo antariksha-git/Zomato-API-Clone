@@ -22,15 +22,23 @@ public class FoodTypeService {
 
     public FoodTypeResponse saveFoodType(FoodTypeRequest foodTypeRequest) {
         return FoodTypeMapper
-                .mapToFoodTypeResponse(foodTypeRepository
-                        .save(FoodTypeMapper.mapToFoodType(foodTypeRequest, new FoodType())));
+                .mapToFoodTypeResponse(findOrCreateFoodTypeByTitle(foodTypeRequest.getTitle()));
     }
 
-    public List<FoodTypeResponse> getAllFoodTypes() {
+    public List<String> getAllFoodTypes() {
         return foodTypeRepository.findAll()
                 .stream()
-                .map(FoodTypeMapper::mapToFoodTypeResponse)
+                .map(FoodType::getTitle)
                 .toList();
+    }
+
+    private FoodType findOrCreateFoodTypeByTitle(String title) {
+        return foodTypeRepository.findByTitleIgnoreCase(title)
+                .orElseGet(() -> {
+                    FoodType foodType = new FoodType();
+                    foodType.setTitle(title);
+                    return foodTypeRepository.save(foodType);
+                });
     }
 
 }
