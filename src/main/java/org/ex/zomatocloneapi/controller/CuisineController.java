@@ -43,7 +43,7 @@ public class CuisineController {
             @ApiResponse(responseCode = "404", description = "No cuisines found", content = @Content)
     })
     @GetMapping("/cuisine")
-    public ResponseEntity<ResponseStructure<List<CuisineResponse>>> getCuisine() {
+    public ResponseEntity<ResponseStructure<List<String>>> getCuisine() {
         return AppResponseBuilder.create(HttpStatus.FOUND, "Found All Cuisines", cuisineService.getAllCuisines());
     }
 
