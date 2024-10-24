@@ -1,6 +1,7 @@
 package org.ex.zomatocloneapi.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.ex.zomatocloneapi.requestdto.MenuCategoryRequest;
 import org.ex.zomatocloneapi.responsedtao.MenuCategoryResponse;
 import org.ex.zomatocloneapi.service.MenuCategoryService;
@@ -9,6 +10,8 @@ import org.ex.zomatocloneapi.util.ResponseStructure;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("${zomato.base_url}")
@@ -30,4 +33,12 @@ public class MenuCategoryController {
                 .create(HttpStatus.OK, "Menu category updated successfully", menuCategoryService
                         .updateMenuCategory(categoryId, menuCategoryRequest));
     }
+
+    @GetMapping("{restaurant_id}/menu")
+    public ResponseEntity<ResponseStructure<List<String>>> getMenuCategories(@PathVariable("restaurant_id")String restaurantId) {
+        return AppResponseBuilder
+                .create(HttpStatus.FOUND, "Menu category retrieved successfully", menuCategoryService
+                        .getMenuCategoriesByRestaurantId(restaurantId));
+    }
+
 }
